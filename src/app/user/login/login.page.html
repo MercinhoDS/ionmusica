@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Login / Entrar</ion-title>
+    <ion-icon name="log-in" slot="end" class="ion-padding"></ion-icon>
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="view" [fullscreen]="true" class="ion-padding-start ion-padding-end">
+
+  <p>Logue-se para ter acesso ao conteúdo e ferramentas restritas.</p>
+  <p class="ion-text-center">
+    <ion-button (click)="login()">
+      <ion-icon name="logo-google" slot="start"></ion-icon>
+      Logue-se com o Google
+    </ion-button>
+  </p>
+  <p><em>Se necessário, desligue o bloqueador de popups para este aplicativo.</em></p>
+
+</ion-content>
