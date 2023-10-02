@@ -40,7 +40,7 @@ export class AppComponent {
     { title: 'Contatos', url: 'contacts', icon: 'mail' },
     { title: 'Sobre', url: 'about', icon: 'information-circle' },
     { title: 'Autores', url: 'author', icon: 'people' },
-    { title: 'Privacidade', url: 'policies', icon: 'lock-closed' }
+    { title: 'Privacidade', url: 'polices', icon: 'lock-closed' }
   ];
 
   constructor() { }
