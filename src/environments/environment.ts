@@ -1,4 +1,3 @@
-
 export const environment = {
   production: false,
   appName: "Músicos",
@@ -9,6 +8,9 @@ export const environment = {
 
   // Coleção de contatos do Firestore.
   contactCollection: 'contacts',
+
+  // Coleção principal do Firebase.
+  dbCollection: 'things',
 
   firebase: {
     apiKey: "AIzaSyD8SxC4SgW4RrfaIGSIwXRU7URphY2YReE",

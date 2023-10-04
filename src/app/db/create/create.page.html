@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-menu-button></ion-menu-button></ion-buttons>
+    <ion-title class="ion-text-center">(Re)Criar DB</ion-title>
+    <ion-icon ios="flame-outline" md="flame-sharp" slot="end" class="ion-padding"></ion-icon>
+    <ion-progress-bar *ngIf="!view" type="indeterminate"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="view" [fullscreen]="true" class="ion-padding-start ion-padding-end">
+
+  <p class="ion-text-center bigicon"><ion-icon name="alert-circle"></ion-icon></p>
+  <p><strong>Importante!</strong></p>
+  <p>Use esta função somente em modo de desenvolvimento. Ela destrói completamente a base de dados conectada e cria
+    novamente com dados "fake" padrão.</p>
+  <p class="ion-text-center" *ngIf="docList.length == 0">
+    <ion-button (click)="populate()">
+      <ion-icon slot="start" name="flame"></ion-icon>
+      Recriar banco de dados
+    </ion-button>
+  </p>
+
+  <ion-card *ngIf="docList.length > 0">
+    <ion-card-header>
+      <ion-card-subtitle>{{ docList.length }} itens adicionados:</ion-card-subtitle>
+    </ion-card-header>
+    <ion-list>
+      <ion-item *ngFor="let item of docList">{{ item }}</ion-item>
+    </ion-list>
+  </ion-card>
+
+</ion-content>
