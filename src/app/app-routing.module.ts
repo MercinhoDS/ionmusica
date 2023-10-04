@@ -45,10 +45,15 @@ const routes: Routes = [
     loadChildren: () => import('./user/profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
+    path: 'create',
+    loadChildren: () => import('./db/create/create.module').then( m => m.CreatePageModule)
+  },
+  {
     path: '**',
     redirectTo: 'e404',
     pathMatch: 'full'
   }
+
 ];
 
 @NgModule({
