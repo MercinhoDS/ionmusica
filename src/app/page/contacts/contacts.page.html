@@ -1,19 +1,55 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
+
+    <ion-buttons slot="start"><ion-menu-button></ion-menu-button></ion-buttons>
+
     <ion-title class="ion-text-center">Contatos</ion-title>
 
-    <ion-icon name="mail" slot="end" class="ion-padding"></ion-icon>
-    
+    <ion-icon ios="mail-outline" md="mail-sharp" slot="end" class="ion-padding"></ion-icon>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">contacts</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding-start ion-padding-end">
+
+  <div *ngIf="!sended">
+
+    <p>Preencha todos os campos abaixo para entrar em contato com a equipe do {{ env.appName }}.</p>
+
+    <p>
+      <ion-input label="Nome:" type="text" name="name" label-placement="floating" fill="outline"
+        placeholder="Digite seu nome completo." error-text="Nome inválido." required minlength="3"
+        [(ngModel)]="form.name"></ion-input>
+    </p>
+
+    <p>
+      <ion-input label="E-mail:" type="email" name="email" label-placement="floating" fill="outline"
+        placeholder="Digite seu e-mail." error-text="E-mail inválido." required email
+        [(ngModel)]="form.email"></ion-input>
+    </p>
+
+    <p>
+      <ion-input label="Assunto:" type="text" name="subject" label-placement="floating" fill="outline"
+        placeholder="Digite o assunto." error-text="Assunto inválido." required minlength="3"
+        [(ngModel)]="form.subject"></ion-input>
+    </p>
+
+    <p>
+      <ion-textarea label="Mensagem:" name="message" label-placement="floating" fill="outline"
+        placeholder="Digite a mensagem." error-text="Mensagem inválida." required minlength="5"
+        [(ngModel)]="form.message" autoGrow="true"></ion-textarea>
+    </p>
+
+    <p>
+      <ion-button (click)="sendForm()">Enviar</ion-button>
+    </p>
+
+  </div>
+
+  <div *ngIf="sended">
+    <h4>Olá {{ form.name }}</h4>
+    <p>Seu contato foi enviado com sucesso.</p>
+    <p><em>Obrigado...</em></p>
+  </div>
+
 </ion-content>

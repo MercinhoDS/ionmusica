@@ -6,6 +6,10 @@ export const environment = {
 
   signInMethod: "redirect",
 
+
+  // Coleção de contatos do Firestore.
+  contactCollection: 'contacts',
+
   firebase: {
     apiKey: "AIzaSyD8SxC4SgW4RrfaIGSIwXRU7URphY2YReE",
     authDomain: "ionmusica-702aa.firebaseapp.com",
