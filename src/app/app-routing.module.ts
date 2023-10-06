@@ -49,10 +49,15 @@ const routes: Routes = [
     loadChildren: () => import('./db/create/create.module').then( m => m.CreatePageModule)
   },
   {
+    path: 'view/:id',
+    loadChildren: () => import('./pages/view/view.module').then( m => m.ViewPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'e404',
     pathMatch: 'full'
   }
+
 
 ];
 
