@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { initializeApp } from 'firebase/app';
 
 // Importe apenas os componentes que forem necessários.
-import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 @Component({
   selector: 'app-root',
@@ -37,10 +37,11 @@ export class AppComponent {
   // Menu principal.
   public appPages = [
     { title: 'Início', url: 'home', icon: 'home' },
+    { title: 'Novo', url: 'new', icon: 'add-circle' },
     { title: 'Contatos', url: 'contacts', icon: 'mail' },
     { title: 'Sobre', url: 'about', icon: 'information-circle' },
     { title: 'Autores', url: 'author', icon: 'people' },
-    { title: 'Privacidade', url: 'polices', icon: 'lock-closed' }
+    { title: 'Privacidade', url: 'policies', icon: 'lock-closed' }
   ];
 
   constructor() { }

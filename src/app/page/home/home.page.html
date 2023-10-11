@@ -7,25 +7,31 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" *ngIf="view" class="ion-padding">
+<ion-content [fullscreen]="true" *ngIf="view">
 
-  <ion-list *ngIf="docView.length > 0">
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="auto" class="ion-no-padding">
+        <h4 class="ion-margin">Lista de Trecos</h4>
+      </ion-col>
+      <ion-col class="ion-text-end">
+        <ion-button routerLink="new"><ion-icon ios="add-circle-outline" md="add-circle-sharp" slot="start"></ion-icon>Novo</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
+  <ion-list *ngIf="count > 0" class="ion-margin-start ion-margin-end">
     <div *ngFor="let item of docView">
-
       <ion-item [routerLink]="'/view/' + item.id">
-
-        <ion-thumbnail slot="start">
-          <img [alt]="item.name" [src]="item.image">
-        </ion-thumbnail>
+        <ion-thumbnail slot="start"><ion-img [alt]="item.name" [src]="item.image"></ion-img></ion-thumbnail>
         <ion-label>{{ item.name }}</ion-label>
-
       </ion-item>
-
     </div>
-
   </ion-list>
 
-
+  <ion-card *ngIf="count == 0">
+    <ion-card-header><ion-card-title>Oooops!</ion-card-title></ion-card-header>
+    <ion-card-content>Não encontramos documentos.</ion-card-content>
+  </ion-card>
 
 </ion-content>

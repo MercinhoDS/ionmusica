@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-menu-button></ion-menu-button></ion-buttons>
+    <ion-title class="ion-text-center">Novo Documento</ion-title>
+    <ion-icon ios="add-circle-outline" md="add-circle-sharp" slot="end" class="ion-padding"></ion-icon>
+    <ion-progress-bar *ngIf="!view" type="indeterminate"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="view">
+
+  <div *ngIf="!sended">
+
+    <ion-card>
+      <ion-img [src]="newDocument.image" [alt]="newDocument.name"></ion-img>
+      <ion-card-content class="ion-text-center">
+        <ion-grid class="ion-no-padding">
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="getPhoto('new')" color="success">
+                <ion-icon ios="camera-outline" md="camera-sharp" slot="start"></ion-icon>Câmera
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button (click)="getPhoto('reset')" color="warning">
+                <ion-icon ios="refresh-outline" md="refresh-sharp" slot="start"></ion-icon>Padrão
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="ion-padding-start ion-padding-end">
+      <p>
+        <ion-input label="Nome:" type="text" name="name" labelPlacement="floating" fill="outline"
+          placeholder="Digite o nome do item." errorText="Nome inválido." required minlength="3"
+          [(ngModel)]="newDocument.name" (ionInput)="change()"></ion-input>
+      </p>
+
+      <p>
+        <ion-textarea label="Descrição:" name="description" labelPlacement="floating" fill="outline"
+          placeholder="Digite a descrição." errorText="Descrição inválida." required minlength="5"
+          [(ngModel)]="newDocument.description" autoGrow="true" (ionInput)="change()"></ion-textarea>
+      </p>
+
+      <p>
+        <ion-input label="Localização:" type="text" name="location" labelPlacement="floating" fill="outline"
+          placeholder="Digite a localização do item." errorText="Localização inválida." required minlength="3"
+          [(ngModel)]="newDocument.location" (ionInput)="change()"></ion-input>
+      </p>
+
+      <p>
+        <ion-toggle [checked]="true" labelPlacement="end" [(ngModel)]="toggleGPS" (ionChange)="toggleChange()">Adicionar
+          GPS na localização.</ion-toggle>
+      </p>
+
+      <p>
+        <ion-card class="ion-text-center ion-no-margin" *ngIf="toggleGPS"><ion-card-subtitle>GPS(↕, ↔): {{
+            newDocument.geolocation }}</ion-card-subtitle></ion-card>
+      </p>
+
+      <p>
+        <ion-button [disabled]="btnDisabled" (click)="saveDocument()">Salvar</ion-button>
+      </p>
+    </div>
+
+  </div>
+
+  <ion-card *ngIf="sended">
+
+    <ion-card-header>
+      <ion-card-title>Oba!</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Treco cadastrado com sucesso!
+      <p class="ion-text-center ion-padding">
+        <ion-button (click)="reload()"><ion-icon ios="add-circle-outline" md="add-circle-sharp"
+            slot="start"></ion-icon>Adicionar Outro</ion-button>
+      </p>
+    </ion-card-content>
+
+
+
+  </ion-card>
+
+</ion-content>

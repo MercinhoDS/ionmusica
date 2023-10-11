@@ -5,6 +5,7 @@ export const things = [
         description: 'Apenas uma coisa.',
         image: 'https://picsum.photos/200',
         location: 'Em uma caixa qualquer.',
+        geolocation: '-12, -24',
         owner: 'vV4hOwydQDNb1vNqaxlNwN6ikQM2',
         views: 0,
         status: 'on'
@@ -15,6 +16,7 @@ export const things = [
         description: 'Apenas um treco.',
         image: 'https://picsum.photos/201',
         location: 'Em uma sala qualquer.',
+        geolocation: '-13, -25',
         owner: 'vV4hOwydQDNb1vNqaxlNwN6ikQM2',
         views: 0,
         status: 'on'
@@ -25,6 +27,7 @@ export const things = [
         description: 'Apenas um bagulho.',
         image: 'https://picsum.photos/202',
         location: 'Em uma escada qualquer.',
+        geolocation: '-14, -26',
         owner: 'q65OIyvJl7QWw1OwRk0idewZi8D2',
         views: 0,
         status: 'on'
@@ -35,6 +38,7 @@ export const things = [
         description: 'Apenas um troço.',
         image: 'https://picsum.photos/199',
         location: 'Em uma gaveta qualquer.',
+        geolocation: '-15, -27',
         owner: 'vV4hOwydQDNb1vNqaxlNwN6ikQM2',
         views: 0,
         status: 'on'
@@ -45,6 +49,7 @@ export const things = [
         description: 'Apenas uma tranqueira.',
         image: 'https://picsum.photos/198',
         location: 'Em um armário qualquer.',
+        geolocation: '-16, -28',
         owner: 'q65OIyvJl7QWw1OwRk0idewZi8D2',
         views: 0,
         status: 'on'
