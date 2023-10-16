@@ -1,6 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start"><ion-menu-button></ion-menu-button></ion-buttons>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title class="ion-text-center">Documento</ion-title>
     <ion-icon ios="document-text-outline" md="document-text-sharp" slot="end" class="ion-padding"></ion-icon>
     <ion-progress-bar *ngIf="!view" type="indeterminate"></ion-progress-bar>
@@ -10,7 +12,7 @@
 <ion-content [fullscreen]="true" *ngIf="view">
 
   <ion-card *ngIf="docView.status == 'success'">
-    <img [alt]="docView.name" [src]="docView.image" style="display: block; margin: auto;" />
+    <ion-img [alt]="docView.name" [src]="docView.image" style="display: block; margin: auto;"></ion-img>
     <ion-card-header>
       <ion-card-title>{{ docView.name }}</ion-card-title>
       <ion-card-subtitle>
@@ -22,16 +24,22 @@
       {{ docView.description }}
       <ul style="padding: 0 0 0 1rem;">
         <li><strong>Local: </strong>{{ docView.location }}</li>
+        <li *ngIf="docView.geolocation.trim() !== ''"><strong>GPS: </strong><a
+            href="https://www.google.com/maps?q={{ docView.geolocation }}" target="_blank">{{ docView.geolocation }}</a>
+        </li>
       </ul>
 
       <ion-grid>
         <ion-row>
           <ion-col class="ion-text-center">
-            <ion-button color="warning"><ion-icon name="create" slot="start"></ion-icon>Editar</ion-button>
+            <ion-button color="warning" [routerLink]="'/edit/' + docView.id">
+              <ion-icon name="create" slot="start"></ion-icon>Editar
+            </ion-button>
           </ion-col>
           <ion-col class="ion-text-center">
-            <ion-button color="danger" (click)="delete(docView.id)"><ion-icon name="trash"
-                slot="start"></ion-icon>Apagar</ion-button>
+            <ion-button color="danger" (click)="delete(docView.id)">
+              <ion-icon name="trash" slot="start"></ion-icon>Apagar
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -47,7 +55,9 @@
   </ion-card>
 
   <p class="ion-text-center">
-    <ion-button routerLink="/"><ion-icon name="home" slot="start"></ion-icon> Listagem</ion-button>
+    <ion-button routerLink="/">
+      <ion-icon name="home" slot="start"></ion-icon> Listagem
+    </ion-button>
   </p>
 
-</ion-content>
+</ion-content> 

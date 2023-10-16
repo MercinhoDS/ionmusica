@@ -1,4 +1,3 @@
-
 export const environment = {
   production: true,
   appName: "Músicos",
@@ -12,6 +11,10 @@ export const environment = {
 
   // Coleção principal do Firebase.
   dbCollection: 'things',
+
+  dbDefaultImage: "assets/generic.png",
+
+  dbImageFormats: ['gif', 'jpg', 'jpeg', 'png', 'bmp', 'tiff', 'tif'],
 
   firebase: {
     apiKey: "AIzaSyD8SxC4SgW4RrfaIGSIwXRU7URphY2YReE",

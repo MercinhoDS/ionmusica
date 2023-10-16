@@ -1,0 +1,126 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{ pageTitle }}</ion-title>
+    <ion-icon ios="document-outline" md="document-sharp" slot="end" class="ion-padding"></ion-icon>
+    <ion-progress-bar *ngIf="!pageView" type="indeterminate"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="pageView">
+
+  <div *ngIf="!pageSended">
+
+    <!-- Imagem do documento. -->
+    <ion-card>
+      <ion-img [src]="document.image" [alt]="document.name"></ion-img>
+      <ion-card-content class="ion-text-center">
+        <ion-grid class="ion-no-padding">
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="getPhoto('new')" color="success">
+                <ion-icon ios="camera-outline" md="camera-sharp" slot="start"></ion-icon>Câmera
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button (click)="getPhoto('reset')" color="warning">
+                <ion-icon ios="refresh-outline" md="refresh-sharp" slot="start"></ion-icon>Padrão
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Campos do documento. -->
+    <div class="ion-padding-start ion-padding-end">
+      <p>
+        <ion-input label="Nome:" type="text" name="name" labelPlacement="floating" fill="outline"
+          placeholder="Digite o nome do item." errorText="Nome inválido." required minlength="3"
+          [(ngModel)]="document.name" (ionInput)="change()"></ion-input>
+      </p>
+
+      <p>
+        <ion-textarea label="Descrição:" name="description" labelPlacement="floating" fill="outline"
+          placeholder="Digite a descrição." errorText="Descrição inválida." required minlength="5"
+          [(ngModel)]="document.description" autoGrow="true" (ionInput)="change()"></ion-textarea>
+      </p>
+
+      <p>
+        <ion-input label="Localização:" type="text" name="location" labelPlacement="floating" fill="outline"
+          placeholder="Digite a localização do item." errorText="Localização inválida." required minlength="3"
+          [(ngModel)]="document.location" (ionInput)="change()"></ion-input>
+      </p>
+
+      <!-- Mostra/oculta GPS do documento. -->
+      <p>
+        <ion-toggle [checked]="true" labelPlacement="end" [(ngModel)]="pageGPS" (ionChange)="toggleGPS()">Adicionar GPS
+          na localização.</ion-toggle>
+      </p>
+
+      <!-- Mostra GPS se habilitado. -->
+      <ion-card class="ion-text-center ion-no-margin" *ngIf="capacitorGPS && pageGPS && document.geolocation != ''">
+        <ion-card-subtitle>
+          <ion-grid class="ion-no-padding ion-no-margin ion-text-center">
+            <ion-row class="ion-align-items-center">
+              <ion-col size="auto"><strong>&nbsp;GPS:&nbsp;</strong></ion-col>
+              <ion-col>{{ document.geolocation.split(',')[0] }}<br><small>Latitude</small></ion-col>
+              <ion-col>{{ document.geolocation.split(',')[1] }}<br><small>Longitude</small></ion-col>
+              <ion-col size="auto" (click)="openMap()" class="ion-padding-start ion-padding-end">
+                <ion-icon style="color:steelblue; cursor:pointer;" ios="eye-outline" md="eye-sharp"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-subtitle>
+      </ion-card>
+
+    </div>
+
+    <!-- Botões de ação. -->
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngIf="docEdit">
+          <ion-button color="warning" (click)="reloadDocument()">Recarregar</ion-button>
+        </ion-col>
+        <ion-col class="ion-text-end">
+          <ion-button [disabled]="pageBtnDisabled" (click)="saveDocument()">Salvar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+  <!-- Feedback. -->
+  <div *ngIf="pageSended">
+
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>Oba!</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{ pageMessage }}
+        <ion-grid class="ion-no-padding ion-margin-top">
+          <ion-row>
+            <ion-col *ngIf="!this.docEdit">
+              <ion-button (click)="reload()">
+                <ion-icon ios="add-circle-outline" md="add-circle-sharp" slot="start"></ion-icon>Novo
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button routerLink="/">
+                <ion-icon ios="home-outline" md="home-sharp" slot="start"></ion-icon>Listagem
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+
+    </ion-card>
+
+  </div>
+
+</ion-content>
